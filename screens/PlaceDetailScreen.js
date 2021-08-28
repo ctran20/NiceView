@@ -1,8 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const PlaceDetailScreen = () => {
-  return <View></View>;
+  return (
+    <View>
+      <Text>Places Detail Screen</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({});

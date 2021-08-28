@@ -1,8 +1,12 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 
 const NewPlaceScreen = () => {
-  return <View></View>;
+  return (
+    <View>
+      <Text>New Place Screen</Text>
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({});
