@@ -14,7 +14,7 @@ const PlacesListScreen = () => {
 PlacesListScreen.navigationOptions = (navData) => {
   return {
     headerTitle: 'All Places',
-    headerRight: (
+    headerRight: () => (
       <HeaderButtons HeaderButtonComponent={CustomHeaderButton}>
         <Item
           title="Add Place"
