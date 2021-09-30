@@ -6,15 +6,19 @@ const MapPreview = (props) => {
   let imagePreviewUrl;
 
   if (props.location) {
-    const imagePreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${props.location.lat},${props.location.lng}&zoom=14&size=400x200&maptype=roadmap&markers=color:red%7Clabel:C%7C${props.location.lat},${props.location.lat}&key=${ENV.googleApiKey}`;
+    imagePreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${props.location.lat},${props.location.lng}&zoom=14&size=400x200&maptype=roadmap&markers=color:red%7Clabel:C%7C${props.location.lat},${props.location.lat}&key=${ENV.googleApiKey}`;
     console.log('API called!');
-    console.log(imagePreviewUrl);
   }
 
   return (
     <View style={{ ...styles.mapPreview, ...props.style }}>
       {props.location ? (
-        <Image style={styles.mapImage} source={{ uri: imagePreviewUrl }} />
+        <Image
+          style={styles.mapImage}
+          source={{
+            uri: imagePreviewUrl,
+          }}
+        />
       ) : (
         props.children
       )}
