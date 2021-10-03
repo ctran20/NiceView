@@ -6,6 +6,7 @@ import {
   ActivityIndicator,
   Alert,
   StyleSheet,
+  TouchableOpacity,
 } from 'react-native';
 import * as Location from 'expo-location';
 import Colors from '../constants/Colors';
@@ -52,21 +53,36 @@ const LocationPicker = (props) => {
     setIsFetching(false);
   };
 
+  const pickOnMapHandler = () => {
+    props.navigation.navigate('Map');
+  };
+
   return (
-    <View style={styles.locationPicker}>
-      <MapPreview style={styles.mapPreview} location={pickedLocation}>
+    <TouchableOpacity style={styles.locationPicker}>
+      <MapPreview
+        style={styles.mapPreview}
+        location={pickedLocation}
+        onPress={pickOnMapHandler}
+      >
         {isFetching ? (
           <ActivityIndicator size="large" color={Colors.primary} />
         ) : (
           <Text>No location chosen yet!</Text>
         )}
       </MapPreview>
-      <Button
-        title="Get User Location"
-        color={Colors.primary}
-        onPress={getLocationHandler}
-      />
-    </View>
+      <View style={styles.action}>
+        <Button
+          title="Get User Location"
+          color={Colors.primary}
+          onPress={getLocationHandler}
+        />
+        <Button
+          title="Pick On Map"
+          color={Colors.primary}
+          onPress={pickOnMapHandler}
+        />
+      </View>
+    </TouchableOpacity>
   );
 };
 
@@ -80,6 +96,11 @@ const styles = StyleSheet.create({
     height: 150,
     borderColor: '#ccc',
     borderWidth: 1,
+  },
+  action: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    width: '100%',
   },
 });
 
