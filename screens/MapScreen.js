@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
   View,
   Text,
@@ -7,12 +7,14 @@ import {
   Platform,
 } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
+
 import Colors from '../constants/Colors';
 
-const MapScreen = () => {
+const MapScreen = (props) => {
   const [selectedLocation, setSelectedLocation] = useState();
+
   const mapRegion = {
-    latitude: 37.75,
+    latitude: 37.78,
     longitude: -122.43,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
@@ -27,18 +29,15 @@ const MapScreen = () => {
 
   const savePickedLocationHandler = useCallback(() => {
     if (!selectedLocation) {
-      console.log('No selected Location!');
+      // could show an alert!
       return;
     }
-    props.navigation.navigation('NewPlace', {
-      pickedLocation: selectedLocation,
-    });
+    props.navigation.navigate('NewPlace', { pickedLocation: selectedLocation });
   }, [selectedLocation]);
 
   useEffect(() => {
-    props.navigation.setParams({ saveLocation: savePickedLocationHandler }),
-      [savePickedLocationHandler];
-  });
+    props.navigation.setParams({ saveLocation: savePickedLocationHandler });
+  }, [savePickedLocationHandler]);
 
   let markerCoordinates;
 
@@ -56,7 +55,7 @@ const MapScreen = () => {
       onPress={selectLocationHandler}
     >
       {markerCoordinates && (
-        <Marker title="Selected Location" coordinate={markerCoordinates} />
+        <Marker title="Picked Location" coordinate={markerCoordinates} />
       )}
     </MapView>
   );
@@ -65,8 +64,8 @@ const MapScreen = () => {
 MapScreen.navigationOptions = (navData) => {
   const saveFn = navData.navigation.getParam('saveLocation');
   return {
-    headerRight: (
-      <TouchableOpacity onPress={saveFn}>
+    headerRight: () => (
+      <TouchableOpacity style={styles.headerButton} onPress={saveFn}>
         <Text style={styles.headerButtonText}>Save</Text>
       </TouchableOpacity>
     ),
@@ -77,12 +76,12 @@ const styles = StyleSheet.create({
   map: {
     flex: 1,
   },
-  headerBuuton: {
+  headerButton: {
     marginHorizontal: 20,
   },
   headerButtonText: {
     fontSize: 16,
-    color: Platform.OS == 'android' ? 'white' : Colors.primary,
+    color: Platform.OS === 'android' ? 'white' : Colors.primary,
   },
 });
 
