@@ -22,9 +22,9 @@ To run the project:
 <h3>Detail Screen:</h3>
 <p>Each post will show the picture and the location of the photo. Tapping on the location will display it on the map allowing you to see where it is and get direction there.</p>
 <div>
-<img src="./git-imgs/show-location.gif" width="300" />
-<img src="./git-imgs/spot1.jpg" width="300" />
-<img src="./git-imgs/spot2.jpg" width="300" />
+<img src="./git-imgs/show-location.gif" width="280" />
+<img src="./git-imgs/spot1.jpg" width="280" />
+<img src="./git-imgs/spot2.jpg" width="280" />
 </div>
 
 <hr/>
