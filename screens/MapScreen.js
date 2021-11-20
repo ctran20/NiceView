@@ -1,26 +1,26 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
+import { Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 
 import Colors from '../constants/Colors';
 
 const MapScreen = (props) => {
-  const [selectedLocation, setSelectedLocation] = useState();
+  const initalLocation = props.navigation.getParam('initalLocation');
+  const readonly = props.navigation.getParam('readonly');
+
+  const [selectedLocation, setSelectedLocation] = useState(initalLocation);
 
   const mapRegion = {
-    latitude: 37.78,
-    longitude: -122.43,
+    latitude: initalLocation ? initalLocation.lat : 37.78,
+    longitude: initalLocation ? initalLocation.lng : -122.43,
     latitudeDelta: 0.0922,
     longitudeDelta: 0.0421,
   };
 
   const selectLocationHandler = (event) => {
+    if (readonly) {
+      return;
+    }
     setSelectedLocation({
       lat: event.nativeEvent.coordinate.latitude,
       lng: event.nativeEvent.coordinate.longitude,
@@ -63,6 +63,10 @@ const MapScreen = (props) => {
 
 MapScreen.navigationOptions = (navData) => {
   const saveFn = navData.navigation.getParam('saveLocation');
+  const readonly = navData.navigation.getParam('readonly');
+  if (readonly) {
+    return {};
+  }
   return {
     headerRight: () => (
       <TouchableOpacity style={styles.headerButton} onPress={saveFn}>

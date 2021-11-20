@@ -63,6 +63,12 @@ const NewPlaceScreen = (props) => {
   );
 };
 
+NewPlaceScreen.navigationOptions = (navData) => {
+  return {
+    headerTitle: 'Add New Place',
+  };
+};
+
 const styles = StyleSheet.create({
   form: {
     margin: 30,
