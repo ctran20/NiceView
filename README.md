@@ -1,4 +1,4 @@
-<img src="./git-imgs/ios-logo.png" width="300" />
+<img src="./git-imgs/ios-title.png" width="300" />
 <p>NiceView is an app that allows people to share point of interests with others. From beautiful scenery to location with a “Nice View”, you can mark the location and share it with everyone. NiceView is a mobile app for iOS/Android developed with React Native/JavaScript.</p>
 
 <p>All the locations and images in posts are store in the internal storage of the device using SQLite.</p>
